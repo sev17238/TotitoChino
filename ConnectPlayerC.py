@@ -50,8 +50,8 @@ def connect():
 # adversario.
 @socket_io.on('ready')
 def ready(info):
-    #print("Tablero que viene del servidor")
-    #print(info['board'])
+    print("Tablero que viene del servidor")
+    print(info['board'])
     print("L")
 
     ##AQUI SE VERIFICA LA JUGADA (coordenada) QUE HIZO EL JUGADOR DEL OTRO LADO DEL SERVER
@@ -60,13 +60,15 @@ def ready(info):
     pos_arr1 = 0
     pos_arr2 = 0
     horver = 2
-    different_pos = -1 #sera la posicion en la cual el tablero que viene del server se diferencia con el que se tenia
+    different_pos = 99 #sera la posicion en la cual el tablero que viene del server se diferencia con el que se tenia
+    pos_value = 0
     while (i <= 29):
         pos_arr1 = info['board'][0][i]
         pos_arr2 = Match.LocalBoard[0][i]
         if(pos_arr1 != pos_arr2):
             different_pos=pos_arr1
             horver = 0
+            pos_value = i
             i=29
         i=i+1
     if(horver == 2): #to start again if there are no equal values
@@ -77,12 +79,16 @@ def ready(info):
         if(pos_arr1 != pos_arr2):
             different_pos=pos_arr1
             horver = 1
+            pos_value = i
             i=29
         i=i+1
 
-    if(horver != 2 and different_pos != -1 and different_pos != 99): #si se encontro alguna diferencia entonces se recive la jugada 
-        conv1 = ConvAI.convSIOtoAI(horver,different_pos)
-        #print("horver:"+str(horver)+" different_pos:"+str(different_pos))
+    #if(horver != 2 and different_pos != -2  and different_pos != -1 and different_pos != 1 and different_pos != 99): #si se encontro alguna diferencia entonces se recive la jugada 
+    if(horver != 2): #si se encontro alguna diferencia entonces se recibe la jugada 
+        #different_pos = 0
+        #conv1 = ConvAI.convSIOtoAI(horver,different_pos)
+        conv1 = ConvAI.convSIOtoAI(horver,pos_value)
+        print("horver:"+str(horver)+" different_pos:"+str(different_pos))
         #print("conv1: x:"+str(conv1[0])+" y:"+str(conv1[1]))
         Match.MoveFromOther(conv1[0],conv1[1])
         ##print("jugada del otro: x:" +str(conv1[0]) + " y:" + str(conv1[1]))
@@ -116,8 +122,8 @@ def ready(info):
         if(Match.LocalBoard[1][posicion] != -1 and Match.LocalBoard[1][posicion] != 1 and Match.LocalBoard[1][posicion] != -2 and Match.LocalBoard[1][posicion] != 2):
             Match.LocalBoard[1][posicion] = 0
 
-    #print("Tablero con la nueva jugada local: ")
-    #print(Match.LocalBoard)
+    print("Tablero con la nueva jugada local: ")
+    print(Match.LocalBoard)
 
 #########################################
 # Metodo para finalizar la partida contra
