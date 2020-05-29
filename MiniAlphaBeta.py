@@ -8,12 +8,12 @@
 # para la resolucion de un tablero de 6 * 6 del famoso      # 
 # juego Dots and Boxes (O totito chino).                    #
 #############################################################
-# Algoritmos.py: Clase la definicion de los algoritmos      #
+# MiniAlphaBeta.py: Clase la definicion de los algoritmos      #
 # empleados: Minimax y Alpha-Beta                           #
 #############################################################
 # A class for defining algorithms used (minimax and alpha-beta pruning)
 #
-class Algoritmos: 
+class MiniAlphaBeta: 
     
     ######################################################
     # Funcion para la definicion del algoritmo de minimax.
@@ -28,7 +28,7 @@ class Algoritmos:
         i = 0
         j = 0
         for k, z in State.children.items():
-            Result = Algoritmos.Maximum(z, Ply_num - 1, Minimum_Score)
+            Result = MiniAlphaBeta.Maximum(z, Ply_num - 1, Minimum_Score)
             if Minimum_Score > Result:
                 Minimum_Score = Result
                 i = k[0]
@@ -48,7 +48,7 @@ class Algoritmos:
         i = 0
         j = 0
         for k, z in State.children.items():
-            Result = Algoritmos.Minimum(z, Ply_num - 1, Maximum_Score)
+            Result = MiniAlphaBeta.Minimum(z, Ply_num - 1, Maximum_Score)
             if Maximum_Score < Result:
                 Maximum_Score = Result
             if Result > Alpha:
@@ -68,7 +68,7 @@ class Algoritmos:
         i = 0
         j = 0
         for k, z in State.children.items():
-            Result = Algoritmos.Maximum(z, Ply_num - 1, Minimum_Score)
+            Result = MiniAlphaBeta.Maximum(z, Ply_num - 1, Minimum_Score)
             if Minimum_Score > Result:
                 Minimum_Score = Result
             if Result < Beta:

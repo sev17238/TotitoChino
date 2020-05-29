@@ -8,11 +8,11 @@
 # para la resolucion de un tablero de 6 * 6 del famoso      # 
 # juego Dots and Boxes (O totito chino).                    #
 #############################################################
-# Tablero.py: Clase para el manejo de operaciones con las   #
-# matrices que representan al tablero.                      #
+# MatrizTJuego.py: Clase para el manejo de operaciones con las   #
+# matrices que representan al tablero y sus estados.        #
 #############################################################
 
-class Tablero: #A class for managing different situations and states happening in the game and on the board
+class MatrizTJuego:
     def __init__(self, Mat, dimX, dimY):
         self.Mat = Mat
         self.dimX = dimX
@@ -21,17 +21,17 @@ class Tablero: #A class for managing different situations and states happening i
     #############################################
     # Inicializando el tablero del juego con X
     # y Y dimensiones.
-    def Inicializacion(self): #initiating the game board with X and Y dimensions
+    def Inicializacion(self): 
         for i in range(0, self.dimY):
             R = []
             for j in range (0, self.dimX):
                 if i % 2 == 1 and j % 2 == 1:
-                    #R.append(randint(1, 9))  # Assigning a random number from 1 to 9 to the spots in the board as the points
-                    R.append(1) # there will be always a point for each good move
+                    #R.append(randint(1, 9))  # Se le asignan numeros aleatorios a las casillas como el puntaje del juego
+                    R.append(1) # En este caso siempre habra 1s
                 elif i % 2 == 0 and j % 2 == 0:
-                    R.append('*') # printing asterisks as the dots in the board
+                    R.append('*') # Los asteriscos haran el papel de puntos en el juego
                 else:
-                    R.append(' ') # adding extra space for actions in the game
+                    R.append(' ') # Espacios para una mejor visualizacion
             self.Mat.append(R)
 
     #############################################
@@ -71,10 +71,15 @@ class Tablero: #A class for managing different situations and states happening i
             print()
         print("   _________________________\n")
 
+    ###########################################
+    # Se retorna el estado actual
     def Get_currentState(self):
-        return Tablero(self.Get_matrix(), self.dimX, self.dimY)
+        return MatrizTJuego(self.Get_matrix(), self.dimX, self.dimY)
 
-    def action(self, i, j): # Applying the actions made by the human or the computer
+    #################################################################
+    # Aplicando las acciones en el tablero realizadas por alguno de
+    # de los jugadores
+    def action(self, i, j): 
         Sum = 0
 
         if j % 2 == 0 and i % 2 == 1:

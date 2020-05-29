@@ -8,17 +8,17 @@
 # para la resolucion de un tablero de 6 * 6 del famoso      #
 # juego Dots and Boxes (O totito chino).                    #
 #############################################################
-# Nodos.py: Clase para operaciones con nodos                #
+# Arbol.py: Clase para operaciones relacionadas con nodos   #
 #############################################################
 
-class Nodos: 
+class Arbol: 
     def __init__(self, currentState):
         self.Current = currentState
         self.CurrentScore = 0
         self.children = {}
 
     def Make(self, i, j, player): # Function for generating a child node
-        self.children[(i, j)] = Nodos(self.Current.Get_currentState())
+        self.children[(i, j)] = Arbol(self.Current.Get_currentState())
         mul = 1
         if player:
             mul *= -1

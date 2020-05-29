@@ -50,9 +50,20 @@ def connect():
 # adversario.
 @socket_io.on('ready')
 def ready(info):
-    print("Tablero que viene del servidor")
-    print(info['board'])
-    print("L")
+    #print("Tablero que viene del servidor")
+    #print(info['board'])
+    print("   (#############¡¡Jugando!!############)")
+    print("   (####################################)")
+    print("   (------------------------------------)")
+    print(" _(           oooO         Oooo          )_")
+    print("(          ________       ________         )")
+    print("(_           ~~     _| |_     ~~          _)")
+    print("  (                |     |               )")
+    print("  (                  ---                 )")
+    print("    (             \_______/            )")
+    print("      (                              )")
+    print("        (            ___           )")
+    print("             (                )")
 
     ##AQUI SE VERIFICA LA JUGADA (coordenada) QUE HIZO EL JUGADOR DEL OTRO LADO DEL SERVER
     #si el tablero ya tiene alguna jugada entonces se debe verificar la coordenada y responder acorde a eso
@@ -88,7 +99,7 @@ def ready(info):
         #different_pos = 0
         #conv1 = ConvAI.convSIOtoAI(horver,different_pos)
         conv1 = ConvAI.convSIOtoAI(horver,pos_value)
-        print("horver:"+str(horver)+" different_pos:"+str(different_pos))
+        #print("horver:"+str(horver)+" different_pos:"+str(different_pos))
         #print("conv1: x:"+str(conv1[0])+" y:"+str(conv1[1]))
         Match.MoveFromOther(conv1[0],conv1[1])
         ##print("jugada del otro: x:" +str(conv1[0]) + " y:" + str(conv1[1]))
@@ -122,8 +133,8 @@ def ready(info):
         if(Match.LocalBoard[1][posicion] != -1 and Match.LocalBoard[1][posicion] != 1 and Match.LocalBoard[1][posicion] != -2 and Match.LocalBoard[1][posicion] != 2):
             Match.LocalBoard[1][posicion] = 0
 
-    print("Tablero con la nueva jugada local: ")
-    print(Match.LocalBoard)
+    #print("Tablero con la nueva jugada local: ")
+    #print(Match.LocalBoard)
 
 #########################################
 # Metodo para finalizar la partida contra
@@ -141,7 +152,7 @@ def finish(info):
     else:
         print("Te han delotado! Molilas en la velguenza y te ilas al infielno con los Yaoguai!")
 
-    print("Listo!")
+    print("\n¡¡Listo pala jugal de nuevo!!")
     Match.Reset(11,11,2)
     socket_io.emit('player_ready',{
         'tournament_id': id_torneo,
