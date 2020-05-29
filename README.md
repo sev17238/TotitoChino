@@ -1,2 +1,2 @@
-# TotitoChino
-Implementacion de Minimax y Alpha-Beta en la resolucion de Dots and Boxes (Totito Chino)
+# Totito Chino
+Proyecto para la resolucion de totito chino con Minimax y alpha beta.

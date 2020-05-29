@@ -1,0 +1,32 @@
+INSTALACIONES
+power
+gulp - the latest version
+node 10 a lo mas
+(versiones 8 y 9 podrian todabia funcionar)
+
+clonar el administrador
+
+OTHELLO cliente
+clonar
+instalacion
+
+LINKS:
+https://github.com/samuelchvez/open-1v1-board-game-coordinator
+https://github.com/samuelchvez/open-1v1-board-game-coordinator-admin
+https://github.com/samuelchvez/othello-client
+https://gist.github.com/samuelchvez/f066aeee698ddb37f759c619980bb0c7
+
+Pasos:
+node10
+bower
+gulp
+clonar coordinador
+clonar el administrador
+clonar el cliente de ejemplo
+COORDINADOR
+node ./bin/www --tid=142857 --rrt=2 --game=dotsAndBoxes
+ADMINISTRADOR
+colocar mismo tid para coordinador y administrador.
+AI deterministica
+
+Minimax, poda alpha / beta, lookahead
